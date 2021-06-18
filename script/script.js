@@ -17,7 +17,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateClock() {
-      console.log("sss");
       let timer = getTimeRemaiming();
 
       timerHours.textContent = timer.hours;
@@ -40,4 +39,84 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   countTimer("20 july 2021");
+
+
+
+  const btnMenu = document.querySelector('.menu'),
+    menu = document.querySelector('menu'),
+    closeBtn = document.querySelector('.close-btn'),
+    menuItems = menu.querySelectorAll('ul>li'); //получили детей
+
+  const toggleMenu = () => {
+    const btnMenu = document.querySelector('.menu'),
+    menu = document.querySelector('menu'),
+    closeBtn = document.querySelector('.close-btn'),
+    menuItems = menu.querySelectorAll('ul>li'); //получили детей
+
+      const handlerMenu = () => {
+    // if(!menu.style.transform || menu.style.transform === `translate(-100%)`){
+    //        menu.style.transform = `translate(0)`;
+    //     } else {
+    //       menu.style.transform = `translate(-100%)`;
+    //     }
+      //// OR
+      menu.classList.toggle('active-menu')
+
+    };
+
+    btnMenu.addEventListener('click', handlerMenu);
+    closeBtn.addEventListener('click', handlerMenu);
+
+    menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
+  };
+
+  toggleMenu();
+
+
+  //popup
+
+  const toggelPopUp = () => {
+    const popup = document.querySelector('.popup'),
+     blockA = document.querySelector('.popup-content'),
+      popupBtn = document.querySelectorAll('.popup-btn'),
+      popupClose = document.querySelector('.popup-close');
+
+      popupBtn.forEach((elem) => {
+        elem.addEventListener('click', () => {
+          let start = Date.now();
+
+          let timer = setInterval(function() {
+            let timePassed = Date.now()- start;
+            popup.style.display = 'block';
+
+            blockA.style.left = timePassed / 5 + 'px';
+
+            let windowHaft = document.documentElement.clientWidth / 2;
+            let popUpHalf = blockA.getBoundingClientRect().width / 2;
+            let leftPosishin = blockA.getBoundingClientRect().left + popUpHalf;
+            console.log(leftPosishin, windowHaft)
+            if (leftPosishin > windowHaft ) clearInterval(timer);
+          }, 20)
+        })
+      });
+
+    popupClose.addEventListener('click',() => {
+     popup.style.display = 'none';
+   });
+  }
+
+toggelPopUp();
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
