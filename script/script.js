@@ -1,175 +1,164 @@
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
-//   	function countTimer(dedline) {
-//     	let timerHours = document.querySelector("#timer-hours"),
-//      	 timerMinutes = document.querySelector("#timer-minutes"),
-//      	 timerSeconds = document.querySelector("#timer-seconds");
+  //   	function countTimer(dedline) {
+  //     	let timerHours = document.querySelector("#timer-hours"),
+  //      	 timerMinutes = document.querySelector("#timer-minutes"),
+  //      	 timerSeconds = document.querySelector("#timer-seconds");
 
+  //     function getTimeRemaiming() {
+  //       let dateStop = new Date(dedline).getTime(),
+  //         dateNow = new Date().getTime(),
+  //         timeRemaining = (dateStop - dateNow) / 1000,
+  //         seconds = Math.floor(timeRemaining % 60),
+  //         minutes = Math.floor((timeRemaining / 60) % 60),
+  //         hours = Math.floor((timeRemaining / 60 / 60) % 24);
+  //       return { timeRemaining, hours, minutes, seconds };
+  //     }
 
-//     function getTimeRemaiming() {
-//       let dateStop = new Date(dedline).getTime(),
-//         dateNow = new Date().getTime(),
-//         timeRemaining = (dateStop - dateNow) / 1000,
-//         seconds = Math.floor(timeRemaining % 60),
-//         minutes = Math.floor((timeRemaining / 60) % 60),
-//         hours = Math.floor((timeRemaining / 60 / 60) % 24);
-//       return { timeRemaining, hours, minutes, seconds };
-//     }
+  //     function updateClock() {
+  //       let timer = getTimeRemaiming();
 
-//     function updateClock() {
-//       let timer = getTimeRemaiming();
+  //       timerHours.textContent = timer.hours;
+  //       timerMinutes.textContent = timer.minutes;
+  //       timerSeconds.textContent = timer.seconds;
 
-//       timerHours.textContent = timer.hours;
-//       timerMinutes.textContent = timer.minutes;
-//       timerSeconds.textContent = timer.seconds;
+  //       if (timer.timeRemaining > 0) {
+  //       } else {
+  //         timerHours.textContent = "00";
+  //         timerHours.style.color = "red";
+  //         timerMinutes.textContent = "00";
+  //         timerMinutes.style.color = "red";
+  //         timerSeconds.textContent = "00";
+  //         timerSeconds.style.color = "red";
+  //         clearInterval(counter);
+  //       }
+  //     }
 
-//       if (timer.timeRemaining > 0) {
-//       } else {
-//         timerHours.textContent = "00";
-//         timerHours.style.color = "red";
-//         timerMinutes.textContent = "00";
-//         timerMinutes.style.color = "red";
-//         timerSeconds.textContent = "00";
-//         timerSeconds.style.color = "red";
-//         clearInterval(counter);
-//       }
-//     }
+  //     let counter = setInterval(updateClock, 1000);
+  //   }
 
-//     let counter = setInterval(updateClock, 1000);
-//   }
+  //   countTimer("20 july 2021");
 
-//   countTimer("20 july 2021");
+  //   const btnMenu = document.querySelector(".menu"),
+  //     menu = document.querySelector("menu"),
+  //     closeBtn = document.querySelector(".close-btn"),
+  //     menuItems = menu.querySelectorAll("ul>li"); //получили детей
 
-//   const btnMenu = document.querySelector(".menu"),
-//     menu = document.querySelector("menu"),
-//     closeBtn = document.querySelector(".close-btn"),
-//     menuItems = menu.querySelectorAll("ul>li"); //получили детей
+  //   const toggleMenu = () => {
+  //     const btnMenu = document.querySelector(".menu"),
+  //       menu = document.querySelector("menu"),
+  //       closeBtn = document.querySelector(".close-btn"),
+  //       menuItems = menu.querySelectorAll("ul>li"); //получили детей
 
-//   const toggleMenu = () => {
-//     const btnMenu = document.querySelector(".menu"),
-//       menu = document.querySelector("menu"),
-//       closeBtn = document.querySelector(".close-btn"),
-//       menuItems = menu.querySelectorAll("ul>li"); //получили детей
+  //     const handlerMenu = () => {
+  //       // if(!menu.style.transform || menu.style.transform === `translate(-100%)`){
+  //       //        menu.style.transform = `translate(0)`;
+  //       //     } else {
+  //       //       menu.style.transform = `translate(-100%)`;
+  //       //     }
+  //       //// OR
+  //       menu.classList.toggle("active-menu");
+  //     };
 
-//     const handlerMenu = () => {
-//       // if(!menu.style.transform || menu.style.transform === `translate(-100%)`){
-//       //        menu.style.transform = `translate(0)`;
-//       //     } else {
-//       //       menu.style.transform = `translate(-100%)`;
-//       //     }
-//       //// OR
-//       menu.classList.toggle("active-menu");
-//     };
+  //     btnMenu.addEventListener("click", handlerMenu);
+  //     closeBtn.addEventListener("click", handlerMenu);
 
-//     btnMenu.addEventListener("click", handlerMenu);
-//     closeBtn.addEventListener("click", handlerMenu);
+  //     menuItems.forEach((elem) => elem.addEventListener("click", handlerMenu));
+  //   };
 
-//     menuItems.forEach((elem) => elem.addEventListener("click", handlerMenu));
-//   };
+  //   toggleMenu();
 
-//   toggleMenu();
+  //   //popup
 
-//   //popup
+  //   const toggelPopUp = () => {
+  //     const popup = document.querySelector(".popup"),
+  //     blockA = document.querySelector(".popup-content");
+  //     const popupBtn = document.querySelectorAll(".popup-btn");
+  //     const popupClose = document.querySelector('.popup-close');
 
-//   const toggelPopUp = () => {
-//     const popup = document.querySelector(".popup"),
-//     blockA = document.querySelector(".popup-content");
-//     const popupBtn = document.querySelectorAll(".popup-btn");
-//     const popupClose = document.querySelector('.popup-close');
+  //     popupBtn.forEach((elem) => {
+  //       elem.addEventListener("click", () => {
+  //           popup.style.display = "block";
+  //       });
+  //     });
 
-//     popupBtn.forEach((elem) => {
-//       elem.addEventListener("click", () => {
-//           popup.style.display = "block";
-//       });
-//     });
+  //      popup.addEventListener('click', (event) => {
+  //       let target = event.target;
 
-//      popup.addEventListener('click', (event) => {
-//       let target = event.target;
+  //       if(target.classList.contains('popup-close')){
+  //         popup.style.display = "none";
+  //       } else {
+  //         target = target.closest('.popup-content');
 
-//       if(target.classList.contains('popup-close')){
-//         popup.style.display = "none";
-//       } else {
-//         target = target.closest('.popup-content');
-        
-//         if(!target){
-//           popup.style.display = "none";
-//         }
-//       }
+  //         if(!target){
+  //           popup.style.display = "none";
+  //         }
+  //       }
 
-//      });
+  //      });
 
-  
+  //  //           таймер
+  //         // let start = Date.now();
 
+  //         // let timer = setInterval(function () {
+  //         //   let timePassed = Date.now() - start;
+  //         //   popup.style.display = "block";
 
-//  //           таймер
-//         // let start = Date.now();
+  //         //   blockA.style.left = timePassed / 5 + "px";
 
-//         // let timer = setInterval(function () {
-//         //   let timePassed = Date.now() - start;
-//         //   popup.style.display = "block";
+  //         //   let windowHaft = document.documentElement.clientWidth / 2;
+  //         //   let popUpHalf = blockA.getBoundingClientRect().width / 2;
+  //         //   let leftPosishin = blockA.getBoundingClientRect().left + popUpHalf;
+  //         //   console.log(leftPosishin, windowHaft);
+  //         //   if (leftPosishin > windowHaft) clearInterval(timer);
+  //         // }, 20);
 
-//         //   blockA.style.left = timePassed / 5 + "px";
+  //     popupClose.addEventListener("click", () => {
+  //       popup.style.display = "none"
+  //     })
+  //     };
+  //   toggelPopUp();
 
-//         //   let windowHaft = document.documentElement.clientWidth / 2;
-//         //   let popUpHalf = blockA.getBoundingClientRect().width / 2;
-//         //   let leftPosishin = blockA.getBoundingClientRect().left + popUpHalf;
-//         //   console.log(leftPosishin, windowHaft);
-//         //   if (leftPosishin > windowHaft) clearInterval(timer);
-//         // }, 20);
+  // // Табы
 
+  //   const tabs = () => {
+  //   const tabHeader = document.querySelector('.service-header'),
+  //     tab = tabHeader.querySelector('.service-header-tab'),
+  //     tabContent = document.querySelectorAll('.service-tab');
 
-//     popupClose.addEventListener("click", () => {
-//       popup.style.display = "none"
-//     })
-//     };
-//   toggelPopUp();
+  //   const toggleTabContent = (index) => {
+  //     for(let i = 0; i < tabContent.length; i++) {
+  //       if (index === i){
+  //         tab[i].classList.add('active');
+  //         tabContent[i].classList.remove('d-none')
+  //       } else {
+  //         tabContent[i].classList.add('d-none')
+  //         tab[i].classList.remove('active');
+  //       }
+  //     }
+  //   };
 
+  //   tabHeader.addEventListener('click', (event) => {
+  //       let target = event.target;
+  //         target = target.closest('.service-header-tab');   //!!!!!!! поднимает дерево и возвращает null если не найден селектор, видит только родителей
 
-// // Табы
+  //         if(target ){ //если наргет TRUE
 
-//   const tabs = () => {
-//   const tabHeader = document.querySelector('.service-header'),
-//     tab = tabHeader.querySelector('.service-header-tab'),
-//     tabContent = document.querySelectorAll('.service-tab');
+  //           tab.forEach((item, i) => {
 
-//   const toggleTabContent = (index) => {
-//     for(let i = 0; i < tabContent.length; i++) {
-//       if (index === i){
-//         tab[i].classList.add('active');
-//         tabContent[i].classList.remove('d-none')
-//       } else {
-//         tabContent[i].classList.add('d-none')
-//         tab[i].classList.remove('active');
-//       }
-//     }
-//   };
+  //             if(item === target) {
+  //               toggleTabContent(i);
+  //             }
 
-//   tabHeader.addEventListener('click', (event) => {
-//       let target = event.target;
-//         target = target.closest('.service-header-tab');   //!!!!!!! поднимает дерево и возвращает null если не найден селектор, видит только родителей
-        
-//         if(target ){ //если наргет TRUE
-          
-//           tab.forEach((item, i) => {
-            
-//             if(item === target) {
-//               toggleTabContent(i);
-//             }
-         
-//           });
-        
-//         }
-//       });
-//   };
-//   tabs();
+  //           });
 
+  //         }
+  //       });
+  //   };
+  //   tabs();
 
-
-
-
-
-     //слайдер
+  //слайдер
 
   //   const slider = () => {
   //   	const slides = document.querySelectorAll('.portfolio-item'),
@@ -180,7 +169,6 @@ window.addEventListener("DOMContentLoaded", function () {
   //   	let currentSlide = 0;
   //   	let interval;
 
-
   // // вставляем точки
   //     slides.forEach((elem) => {
   //       let newDot = document.createElement('li');
@@ -189,8 +177,6 @@ window.addEventListener("DOMContentLoaded", function () {
   //     });
 
   //     const dot = document.querySelectorAll('.dot');
-
-
 
   //   	const prevSlide = (elem, index, strClass) => {
   //  	   		elem[index].classList.remove(strClass);
@@ -202,11 +188,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
   //    	};
 
-
   //   	const autoPlaySlide = () => {
-       
+
   //       prevSlide(slides, currentSlide, 'portfolio-item-active');
-  //       prevSlide(dot, currentSlide, 'dot-active');        
+  //       prevSlide(dot, currentSlide, 'dot-active');
   //       currentSlide++;
   //       if(currentSlide >= slides.length) {
   //         currentSlide = 0;
@@ -218,7 +203,7 @@ window.addEventListener("DOMContentLoaded", function () {
   //   	const startSlide = (time) => {
   //   		interval = setInterval(autoPlaySlide, time)
   //   	};
-    	
+
   //   	const stopSlider = () => {
   //   		clearInterval(interval);
   //   	};
@@ -257,23 +242,20 @@ window.addEventListener("DOMContentLoaded", function () {
   //   	nextSlide(slides, currentSlide, 'portfolio-item-active');
   //   	nextSlide(dot, currentSlide, 'dot-active');
 
-
   //   });
   //     slider.addEventListener('mouseover', (event) => {
-  //     	if(event.target.matches('.portfolio-btn') || 
+  //     	if(event.target.matches('.portfolio-btn') ||
   //     	event.target.matches('.dot')){
   //     		stopSlider();
   //     	}
   //    });
 
   //     slider.addEventListener('mouseout', (event) => {
-  //     	if(event.target.matches('.portfolio-btn') || 
+  //     	if(event.target.matches('.portfolio-btn') ||
   //       event.target.matches('.dot')){
   //         startSlide(2000);
   //       }
   //     });
-
- 
 
   //   startSlide(2000)
 
@@ -281,100 +263,67 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // slider()
 
-
-
-
-// калькулятор
+  // калькулятор
 
   const calc = (price = 100) => {
-
-    const calcBlock = document.querySelector('.calc-block'),
-      calcType = document.querySelector('.calc-type'),
-      calcSquare = document.querySelector('.calc-square'),
-      calcDay = document.querySelector('.calc-day'),
-      calcCount = document.querySelector('.calc-count'),
-      totalValue = document.querySelector('#total');
+    const calcBlock = document.querySelector(".calc-block"),
+      calcType = document.querySelector(".calc-type"),
+      calcSquare = document.querySelector(".calc-square"),
+      calcDay = document.querySelector(".calc-day"),
+      calcCount = document.querySelector(".calc-count"),
+      totalValue = document.querySelector("#total");
 
     const countSum = () => {
       let total = 0,
-        countValue = 1, 
+        countValue = 1,
         dayValue = 1;
 
       const typeValue = calcType.options[calcType.selectedIndex].value,
         squareValu = +calcSquare.value;
 
-      if(calcCount.value > 1){
+      if (calcCount.value > 1) {
         countValue += (calcCount.value - 1) / 10;
       }
 
-      if(calcDay.value && calcDay.value < 5) {
-        dayValue *= 2
+      if (calcDay.value && calcDay.value < 5) {
+        dayValue *= 2;
       } else if (calcDay.value && calcDay.value < 10) {
-        dayValue *= 1.5
+        dayValue *= 1.5;
       }
 
-      if(typeValue && squareValu) {
-        
-        total = Math.floor(price * typeValue * squareValu * countValue * dayValue);
-           
+      if (typeValue && squareValu) {
+        total = Math.floor(
+          price * typeValue * squareValu * countValue * dayValue
+        );
+
         let startCalc = 0;
         let step = Math.floor(total / 50);
-        
+
         let calcSteps = setInterval(function () {
           startCalc = startCalc + step;
 
-          if(startCalc <= total){
+          if (startCalc <= total) {
             totalValue.textContent = startCalc;
           } else {
-            clearInterval(calcSteps)
+            clearInterval(calcSteps);
           }
         }, 10);
       }
-    }
+    };
 
-    calcBlock.addEventListener('change', (event) => {
+    calcBlock.addEventListener("change", (event) => {
       const target = event.target;
 
-      if(target === calcType || 
+      if (
+        target === calcType ||
         target === calcSquare ||
         target === calcDay ||
-        target === calcCount){
-          countSum()
+        target === calcCount
+      ) {
+        countSum();
       }
-
-    })
-
+    });
   };
 
   calc(100);
-
-
-
-
-
-
-      // function outNum(num, elem){
-      //   let e = total;
-      //   let n = 0;
-      //   let t = Math.round(time/(num/step)); 
-      //   let interval = setInterval(() => {
-      //     n = n + step;
-      //     if(n == num) {
-      //       clearInterval(interval);
-      //     }
-      //     e.totalValue.textContent = n;
-      //   },
-      //   t);
-      // };
-      // outNum(100, totalValue)
-
-
-
-
-
-
-
-
-
- });
-
+});
