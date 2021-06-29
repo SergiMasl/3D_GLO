@@ -314,10 +314,22 @@ window.addEventListener("DOMContentLoaded", function () {
       }
 
       if(typeValue && squareValu) {
-        total = price * typeValue * squareValu * countValue * dayValue;
-      }
+        
+        total = Math.floor(price * typeValue * squareValu * countValue * dayValue);
+           
+        let startCalc = 0;
+        let step = Math.floor(total / 50);
+        
+        let calcSteps = setInterval(function () {
+          startCalc = startCalc + step;
 
-      totalValue.textContent = Math.floor(total);
+          if(startCalc <= total){
+            totalValue.textContent = startCalc;
+          } else {
+            clearInterval(calcSteps)
+          }
+        }, 10);
+      }
     }
 
     calcBlock.addEventListener('change', (event) => {
@@ -338,6 +350,23 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+
+      // function outNum(num, elem){
+      //   let e = total;
+      //   let n = 0;
+      //   let t = Math.round(time/(num/step)); 
+      //   let interval = setInterval(() => {
+      //     n = n + step;
+      //     if(n == num) {
+      //       clearInterval(interval);
+      //     }
+      //     e.totalValue.textContent = n;
+      //   },
+      //   t);
+      // };
+      // outNum(100, totalValue)
 
 
 
