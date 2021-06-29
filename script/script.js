@@ -1,5 +1,5 @@
-// window.addEventListener("DOMContentLoaded", function () {
-//   "use strict";
+window.addEventListener("DOMContentLoaded", function () {
+  "use strict";
 
 //   	function countTimer(dedline) {
 //     	let timerHours = document.querySelector("#timer-hours"),
@@ -171,115 +171,170 @@
 
      //слайдер
 
-    const slider = () => {
-    	const slides = document.querySelectorAll('.portfolio-item'),
-    		btn = document.querySelectorAll('.portfolio-btn'),
-    		slider = document.querySelector('.portfolio-content'),
-        dotsUl = document.querySelector('.portfolio-dots');
+  //   const slider = () => {
+  //   	const slides = document.querySelectorAll('.portfolio-item'),
+  //   		btn = document.querySelectorAll('.portfolio-btn'),
+  //   		slider = document.querySelector('.portfolio-content'),
+  //       dotsUl = document.querySelector('.portfolio-dots');
 
-    	let currentSlide = 0;
-    	let interval;
-
-
-// вставляем точки
-      slides.forEach((elem) => {
-        let newDot = document.createElement('li');
-          newDot.classList.add('dot');
-          dotsUl.appendChild(newDot);
-      });
-
-      const dot = document.querySelectorAll('.dot');
+  //   	let currentSlide = 0;
+  //   	let interval;
 
 
+  // // вставляем точки
+  //     slides.forEach((elem) => {
+  //       let newDot = document.createElement('li');
+  //         newDot.classList.add('dot');
+  //         dotsUl.appendChild(newDot);
+  //     });
 
-    	const prevSlide = (elem, index, strClass) => {
-   	   		elem[index].classList.remove(strClass);
-
-   		};
-
-     	const nextSlide = (elem, index, strClass) => {
-       		elem[index].classList.add(strClass);
-
-     	};
+  //     const dot = document.querySelectorAll('.dot');
 
 
-    	const autoPlaySlide = () => {
+
+  //   	const prevSlide = (elem, index, strClass) => {
+  //  	   		elem[index].classList.remove(strClass);
+
+  //  		};
+
+  //    	const nextSlide = (elem, index, strClass) => {
+  //      		elem[index].classList.add(strClass);
+
+  //    	};
+
+
+  //   	const autoPlaySlide = () => {
        
-        prevSlide(slides, currentSlide, 'portfolio-item-active');
-        prevSlide(dot, currentSlide, 'dot-active');        
-        currentSlide++;
-        if(currentSlide >= slides.length) {
-          currentSlide = 0;
-        }
-    		nextSlide(slides, currentSlide, 'portfolio-item-active');
-    		nextSlide(dot, currentSlide, 'dot-active');
-    	};
+  //       prevSlide(slides, currentSlide, 'portfolio-item-active');
+  //       prevSlide(dot, currentSlide, 'dot-active');        
+  //       currentSlide++;
+  //       if(currentSlide >= slides.length) {
+  //         currentSlide = 0;
+  //       }
+  //   		nextSlide(slides, currentSlide, 'portfolio-item-active');
+  //   		nextSlide(dot, currentSlide, 'dot-active');
+  //   	};
 
-    	const startSlide = (time) => {
-    		interval = setInterval(autoPlaySlide, time)
-    	};
+  //   	const startSlide = (time) => {
+  //   		interval = setInterval(autoPlaySlide, time)
+  //   	};
     	
-    	const stopSlider = () => {
-    		clearInterval(interval);
-    	};
+  //   	const stopSlider = () => {
+  //   		clearInterval(interval);
+  //   	};
 
-    slider.addEventListener('click', (event) => {
-    	event.preventDefault();
-    	let target = event.target;
+  //   slider.addEventListener('click', (event) => {
+  //   	event.preventDefault();
+  //   	let target = event.target;
 
-    	if(!target.matches('.portfolio-btn, .dot')){
-    		return;
-    	};
+  //   	if(!target.matches('.portfolio-btn, .dot')){
+  //   		return;
+  //   	};
 
-      prevSlide(slides, currentSlide, 'portfolio-item-active');
-    	prevSlide(dot, currentSlide, 'dot-active');
+  //     prevSlide(slides, currentSlide, 'portfolio-item-active');
+  //   	prevSlide(dot, currentSlide, 'dot-active');
 
-    	if(target.matches('#arrow-right')){
-    		currentSlide++;
-    	} else if(target.matches('#arrow-left')){
-    		currentSlide--;
-    	} else if (target.matches('.dot')){
-    		dot.forEach((elem, index) => {
-    			if(elem === target){
-    				currentSlide = index;
-    			}
-    		});
-    	}
+  //   	if(target.matches('#arrow-right')){
+  //   		currentSlide++;
+  //   	} else if(target.matches('#arrow-left')){
+  //   		currentSlide--;
+  //   	} else if (target.matches('.dot')){
+  //   		dot.forEach((elem, index) => {
+  //   			if(elem === target){
+  //   				currentSlide = index;
+  //   			}
+  //   		});
+  //   	}
 
-    	if(currentSlide >= slides.length) {
-    		currentSlide = 0;
-    	}
+  //   	if(currentSlide >= slides.length) {
+  //   		currentSlide = 0;
+  //   	}
 
-    	if(currentSlide < 0) {
-    		currentSlide = slides.length - 1;
-    	}
+  //   	if(currentSlide < 0) {
+  //   		currentSlide = slides.length - 1;
+  //   	}
 
-    	nextSlide(slides, currentSlide, 'portfolio-item-active');
-    	nextSlide(dot, currentSlide, 'dot-active');
+  //   	nextSlide(slides, currentSlide, 'portfolio-item-active');
+  //   	nextSlide(dot, currentSlide, 'dot-active');
 
-    });
 
-      slider.addEventListener('mouseover', (event) => {
-      	if(event.target.matches('.portfolio-btn') || 
-      	event.target.matches('.dot')){
-      		stopSlider();
-      	}
-     });
+  //   });
+  //     slider.addEventListener('mouseover', (event) => {
+  //     	if(event.target.matches('.portfolio-btn') || 
+  //     	event.target.matches('.dot')){
+  //     		stopSlider();
+  //     	}
+  //    });
 
-      slider.addEventListener('mouseout', (event) => {
-      	if(event.target.matches('.portfolio-btn') || 
-        event.target.matches('.dot')){
-          startSlide(2000);
-        }
-      });
+  //     slider.addEventListener('mouseout', (event) => {
+  //     	if(event.target.matches('.portfolio-btn') || 
+  //       event.target.matches('.dot')){
+  //         startSlide(2000);
+  //       }
+  //     });
 
  
 
-    startSlide(2000)
+  //   startSlide(2000)
+
+  // };
+
+  // slider()
+
+
+
+
+// калькулятор
+
+  const calc = (price = 100) => {
+
+    const calcBlock = document.querySelector('.calc-block'),
+      calcType = document.querySelector('.calc-type'),
+      calcSquare = document.querySelector('.calc-square'),
+      calcDay = document.querySelector('.calc-day'),
+      calcCount = document.querySelector('.calc-count'),
+      totalValue = document.querySelector('#total');
+
+    const countSum = () => {
+      let total = 0,
+        countValue = 1, 
+        dayValue = 1;
+
+      const typeValue = calcType.options[calcType.selectedIndex].value,
+        squareValu = +calcSquare.value;
+
+      if(calcCount.value > 1){
+        countValue += (calcCount.value - 1) / 10;
+      }
+
+      if(calcDay.value && calcDay.value < 5) {
+        dayValue *= 2
+      } else if (calcDay.value && calcDay.value < 10) {
+        dayValue *= 1.5
+      }
+
+      if(typeValue && squareValu) {
+        total = price * typeValue * squareValu * countValue * dayValue;
+      }
+
+      totalValue.textContent = Math.floor(total);
+    }
+
+    calcBlock.addEventListener('change', (event) => {
+      const target = event.target;
+
+      if(target === calcType || 
+        target === calcSquare ||
+        target === calcDay ||
+        target === calcCount){
+          countSum()
+      }
+
+    })
 
   };
 
-  slider()
+  calc(100);
 
 
 
@@ -287,5 +342,10 @@
 
 
 
-// });
+
+
+
+
+
+ });
 
