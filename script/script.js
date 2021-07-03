@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
-
+  /*
   function countTimer(dedline) {
     let timerHours = document.querySelector("#timer-hours"),
       timerMinutes = document.querySelector("#timer-minutes"),
@@ -146,4 +146,205 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   };
   tabs();
+
+  const slider = () => {
+    const slides = document.querySelectorAll(".portfolio-item"),
+      btn = document.querySelectorAll(".portfolio-btn"),
+      slider = document.querySelector(".portfolio-content"),
+      dotsUl = document.querySelector(".portfolio-dots");
+
+    let currentSlide = 0;
+    let interval;
+
+    // вставляем точки
+    slides.forEach((elem) => {
+      let newDot = document.createElement("li");
+      newDot.classList.add("dot");
+      dotsUl.appendChild(newDot);
+    });
+
+    const dot = document.querySelectorAll(".dot");
+
+    const prevSlide = (elem, index, strClass) => {
+      elem[index].classList.remove(strClass);
+    };
+
+    const nextSlide = (elem, index, strClass) => {
+      elem[index].classList.add(strClass);
+    };
+
+    const autoPlaySlide = () => {
+      prevSlide(slides, currentSlide, "portfolio-item-active");
+      prevSlide(dot, currentSlide, "dot-active");
+      currentSlide++;
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      }
+      nextSlide(slides, currentSlide, "portfolio-item-active");
+      nextSlide(dot, currentSlide, "dot-active");
+    };
+
+    const startSlide = (time) => {
+      interval = setInterval(autoPlaySlide, time);
+    };
+
+    const stopSlider = () => {
+      clearInterval(interval);
+    };
+
+    slider.addEventListener("click", (event) => {
+      event.preventDefault();
+      let target = event.target;
+
+      if (!target.matches(".portfolio-btn, .dot")) {
+        return;
+      }
+
+      prevSlide(slides, currentSlide, "portfolio-item-active");
+      prevSlide(dot, currentSlide, "dot-active");
+
+      if (target.matches("#arrow-right")) {
+        currentSlide++;
+      } else if (target.matches("#arrow-left")) {
+        currentSlide--;
+      } else if (target.matches(".dot")) {
+        dot.forEach((elem, index) => {
+          if (elem === target) {
+            currentSlide = index;
+          }
+        });
+      }
+
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      }
+
+      if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+      }
+
+      nextSlide(slides, currentSlide, "portfolio-item-active");
+      nextSlide(dot, currentSlide, "dot-active");
+    });
+    slider.addEventListener("mouseover", (event) => {
+      if (
+        event.target.matches(".portfolio-btn") ||
+        event.target.matches(".dot")
+      ) {
+        stopSlider();
+      }
+    });
+
+    slider.addEventListener("mouseout", (event) => {
+      if (
+        event.target.matches(".portfolio-btn") ||
+        event.target.matches(".dot")
+      ) {
+        startSlide(2000);
+      }
+    });
+
+    startSlide(2000);
+  };
+
+  slider();
+*/
+
+  //23
+  const imgTeams = document.querySelectorAll(".command__photo");
+
+  imgTeams.forEach((image) => {
+    let oldPic = "";
+
+    image.addEventListener("mouseenter", (event) => {
+      oldPic = event.target.src;
+      event.target.src = event.target.dataset.img;
+    });
+
+    function mouseLeaveImg() {
+      event.target.src = oldPic;
+    }
+
+    image.addEventListener("mouseleave", mouseLeaveImg);
+  });
+
+  // калькулятор
+
+  // const calc = (price = 100) => {
+  const calcBlock = document.querySelector(".calc-block"),
+    calcType = document.querySelector(".calc-type"),
+    calcSquare = document.querySelector(".calc-square"),
+    calcDay = document.querySelector(".calc-day"),
+    calcCount = document.querySelector(".calc-count"),
+    totalValue = document.querySelector("#total");
+
+  //2
+  function chechNumbers(event) {
+    event.target.value = event.target.value.replace(/\D/g, "");
+  }
+
+  calcSquare.addEventListener("input", chechNumbers);
+  calcDay.addEventListener("input", chechNumbers);
+  calcCount.addEventListener("input", chechNumbers);
+
+  // форма
+
+  const formName = document.querySelector("#form2-name");
+  const formMessage = document.querySelector("#form2-message");
+  const formEmail = document.querySelector("#form2-email");
+  const mobile = document.querySelector("#form2-phone");
+
+  function chechWords(event) {
+    console.log("fsd");
+    event.target.value = event.target.value.replace(/[^а-я ]/gi, "");
+  }
+
+  formName.addEventListener("input", chechWords);
+  formMessage.addEventListener("input", chechWords);
+
+  formEmail.addEventListener("input", (event) => {
+    formEmail.value = formEmail.value.replace(/[^a-z@\-\.\_!~\*\']/gi, "");
+  });
+
+  mobile.addEventListener("input", (event) => {
+    mobile.value = mobile.value.replace(/[^0-9()\-]/gi, "");
+  });
+
+  function checkBlur(event) {
+    event.target.value = event.target.value.replace(/-{1,}/g, "-");
+    event.target.value = event.target.value.replace(/ {1,}/g, " ");
+    event.target.value = event.target.value.replace(/\({1,}/g, "(");
+    event.target.value = event.target.value.replace(/\){1,}/g, ")");
+    event.target.value = event.target.value.replace(/@{1,}/g, "@");
+    event.target.value = event.target.value.replace(/\.{1,}/g, ".");
+    event.target.value = event.target.value.replace(/\_{1,}/g, "_");
+    event.target.value = event.target.value.replace(/~{1,}/g, "~");
+    event.target.value = event.target.value.replace(/\*{1,}/g, "*");
+    event.target.value = event.target.value.replace(/\'{1,}/g, "'");
+  }
+
+  mobile.addEventListener("blur", checkBlur);
+  formEmail.addEventListener("blur", checkBlur);
+  formMessage.addEventListener("blur", checkBlur);
+
+  formName.addEventListener("blur", () => {
+    let arr = [];
+    let newArr = [];
+
+    arr = formName.value.split(" ");
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+      let newString = capitalizeFirstLetter(arr[i]);
+      newArr.push(newString);
+    }
+
+    let newName = newArr.join(" ");
+    formName.value = newName;
+
+    console.log(newArr);
+  });
 });
