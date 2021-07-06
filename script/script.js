@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function () {
   toggleMenu();
 
   //popup
-
+*/
   const toggelPopUp = () => {
     const popup = document.querySelector(".popup");
     //blockA = document.querySelector(".popup-content");
@@ -91,7 +91,7 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 
   toggelPopUp();
-
+/*
   //           таймер
   // let start = Date.now();
 
@@ -249,7 +249,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   slider();
 */
-
+/*
   //23
   const imgTeams = document.querySelectorAll(".command__photo");
 
@@ -347,4 +347,215 @@ window.addEventListener("DOMContentLoaded", function () {
 
     console.log(newArr);
   });
+
+  const countSum = () => {
+    let total = 0,
+      countValue = 1,
+      dayValue = 1;
+
+    const typeValue = calcType.options[calcType.selectedIndex].value,
+      squareValu = +calcSquare.value;
+
+    if (calcCount.value > 1) {
+      countValue += (calcCount.value - 1) / 10;
+    }
+
+    if (calcDay.value && calcDay.value < 5) {
+      dayValue *= 2;
+    } else if (calcDay.value && calcDay.value < 10) {
+      dayValue *= 1.5;
+    }
+
+    if (typeValue && squareValu) {
+      total = Math.floor(
+        price * typeValue * squareValu * countValue * dayValue
+      );
+
+      let startCalc = 0;
+      let step = Math.floor(total / 50);
+
+      let calcSteps = setInterval(function () {
+        startCalc = startCalc + step;
+
+        if (startCalc <= total) {
+          totalValue.textContent = startCalc;
+        } else {
+          clearInterval(calcSteps);
+        }
+      }, 10);
+    }
+  };
+
+  calcBlock.addEventListener("change", (event) => {
+    const target = event.target;
+
+    if (
+      target === calcType ||
+      target === calcSquare ||
+      target === calcDay ||
+      target === calcCount
+    ) {
+      countSum();
+    }
+  });
+};
+
+calc(100);
+*/
+
+
+  //send-ajax-form
+
+  let phoneNumbers = document.querySelectorAll('.form-phone');
+
+  phoneNumbers.forEach((item) => {
+    item.addEventListener("input", (event) => {
+      item.value = item.value.replace(/[^0-9()+\-]/gi, "");
+    });
+  });
+
+  let nameForm = document.querySelectorAll('.form-name');
+
+  nameForm.forEach((item) => {
+    item.addEventListener("input", (event) => {
+      item.value = item.value.replace(/[^а-я ]/gi, "");
+    });
+  });
+
+  let messageForm = document.querySelector('#form2-message');
+
+    messageForm.addEventListener("input", (event) => {
+      messageForm.value = messageForm.value.replace(/[^а-я0-9,. ]/gi, "");
+    });
+
+
+const sendForm = () => {
+
+  const errorMwssege = 'что то не так',
+    loadMessage ='загрузка',
+    successMessage = 'Форма отправлена, Ждите ответа';
+
+  const statusMessage = document.createElement('div');
+  statusMessage.style.cssText = 'font-size: 2rem; color: blue;'
+
+//форма верхняя
+  const form = document.getElementById('form1');
+      
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      form.appendChild(statusMessage);
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form);
+      let body ={};
+
+      formData.forEach((val, key) => {
+        body[key] = val;
+      });
+
+      postData(body, 
+        () => {
+          statusMessage.textContent = successMessage;
+        }, 
+        (error) => {
+          statusMessage.textContent = errorMwssege;
+        });
+
+      form.reset()
+  
+    });
+
+
+  //форма "наши услуги"
+
+  const formPopup = document.getElementById('form3');
+
+  formPopup.addEventListener('submit', (event) => {
+    event.preventDefault();
+    formPopup.appendChild(statusMessage);
+    statusMessage.textContent = loadMessage;
+    const formData = new FormData(formPopup);
+    let body = {};
+
+    formData.forEach((val, key) => {
+      body[key] = val;
+    });
+
+     postData(body, 
+        () => {
+          statusMessage.textContent = successMessage;
+        }, 
+        (error) => {
+          statusMessage.textContent = errorMwssege;
+        });
+        formPopup.reset()
+
+    });
+
+
+
+
+
+
+//форма "Контактной форме в самом низу страницы"
+
+  const formContact = document.getElementById('form2');
+
+  formContact.addEventListener('submit', (event) => {
+    event.preventDefault();
+    formContact.appendChild(statusMessage);
+    statusMessage.textContent = loadMessage;
+    const formData = new FormData(formContact);
+    let body = {};
+
+    formData.forEach((val, key) => {
+      body[key] = val;
+    });
+
+     postData(body, 
+        () => {
+          statusMessage.textContent = successMessage;
+        }, 
+        (error) => {
+          statusMessage.textContent = errorMwssege;
+        });
+        formContact.reset()
+
+    });
+//////////
+    const postData = (body, outputData, errorData) => {
+      const reques = new XMLHttpRequest();
+      
+      reques.addEventListener('readystatechange', () => {
+        
+        console.log(reques.status);
+        console.log(reques.readyState);
+
+        if (reques.readyState !== 4) {
+          return; 
+        }
+      
+        if (reques.status === 200){
+            outputData();
+        } else {
+          errorData(reques.status);
+        }
+      });
+
+      reques.open('POST', './server.php');
+      reques.setRequestHeader('Content-Type', 'application/json');
+      reques.send(JSON.stringify(body));
+    } ;
+};
+
+sendForm();
+
+  
+
+
+
+
+
+
+
 });
