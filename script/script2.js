@@ -496,10 +496,6 @@ const sendForm = () => {
     });
 
 
-
-
-
-
 //форма "Контактной форме в самом низу страницы"
 
   const formContact = document.getElementById('form2');
@@ -527,27 +523,16 @@ const sendForm = () => {
       formContact.reset()
 
     });
+
 //////////
     const postData = (body) => {
-      return new Promise((resolve, reject) => {
-
-        const reques = new XMLHttpRequest();
       
-        reques.addEventListener('readystatechange', () => {
-
-          if (reques.readyState !== 4) {
-            return; 
-          }
-      
-          if (reques.status === 200){
-            resolve();
-          } else {
-            reject(JSON.parse(reques.responseText));
-          }
-        });
-        reques.open('POST', './server.php');
-        reques.setRequestHeader('Content-Type', 'application/json');
-        reques.send(JSON.stringify(body));
+      return fetch(('./server.php'), {
+        method: 'post',
+        header: {
+          'Content-Type': 'application/json'
+        },
+        'body': JSON.stringify(body)
       });
     };
   };
