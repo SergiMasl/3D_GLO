@@ -405,7 +405,7 @@ calc(100);
 
 
   //send-ajax-form
-
+/*
   let phoneNumbers = document.querySelectorAll('.form-phone');
 
   phoneNumbers.forEach((item) => {
@@ -427,7 +427,7 @@ calc(100);
     messageForm.addEventListener("input", (event) => {
       messageForm.value = messageForm.value.replace(/[^а-я0-9,. ]/gi, "");
     });
-
+*/
 
 const sendForm = () => {
 
@@ -436,7 +436,7 @@ const sendForm = () => {
     successMessage = 'Форма отправлена, Ждите ответа';
 
   const statusMessage = document.createElement('div');
-  statusMessage.style.cssText = 'font-size: 2rem; color: blue;'
+  statusMessage.style.cssText = 'font-size: 2rem; color: black; background: white'
 
 //форма верхняя
   const form = document.getElementById('form1');
@@ -453,13 +453,14 @@ const sendForm = () => {
         body[key] = val;
       });
 
-      postData(body, 
-        () => {
+      postData(body)
+        .then(() =>{
           statusMessage.textContent = successMessage;
-        }, 
-        (error) => {
-          statusMessage.textContent = errorMwssege;
-        });
+        })
+        .catch((error) => {
+            statusMessage.textContent = errorMwssege + 'потому что ' + error.message;
+
+          });
 
       form.reset()
   
@@ -481,20 +482,18 @@ const sendForm = () => {
       body[key] = val;
     });
 
-     postData(body, 
-        () => {
+     postData(body)
+        .then(() =>{
           statusMessage.textContent = successMessage;
-        }, 
-        (error) => {
-          statusMessage.textContent = errorMwssege;
-        });
-        formPopup.reset()
+        })
+        .catch((error) => {
+            statusMessage.textContent = errorMwssege + 'потому что ' + error.message;
+
+          });
+      
+      formPopup.reset()
 
     });
-
-
-
-
 
 
 //форма "Контактной форме в самом низу страницы"
@@ -512,41 +511,31 @@ const sendForm = () => {
       body[key] = val;
     });
 
-     postData(body, 
-        () => {
+     postData(body)
+        .then(() =>{
           statusMessage.textContent = successMessage;
-        }, 
-        (error) => {
-          statusMessage.textContent = errorMwssege;
-        });
-        formContact.reset()
+        })
+        .catch((error) => {
+            statusMessage.textContent = errorMwssege + 'потому что ' + error.message;
+
+          });
+      
+      formContact.reset()
 
     });
+
 //////////
-    const postData = (body, outputData, errorData) => {
-      const reques = new XMLHttpRequest();
+    const postData = (body) => {
       
-      reques.addEventListener('readystatechange', () => {
-        
-        console.log(reques.status);
-        console.log(reques.readyState);
-
-        if (reques.readyState !== 4) {
-          return; 
-        }
-      
-        if (reques.status === 200){
-            outputData();
-        } else {
-          errorData(reques.status);
-        }
+      return fetch(('./server.php'), {
+        method: 'post',
+        header: {
+          'Content-Type': 'application/json'
+        },
+        'body': JSON.stringify(body)
       });
-
-      reques.open('POST', './server.php');
-      reques.setRequestHeader('Content-Type', 'application/json');
-      reques.send(JSON.stringify(body));
-    } ;
-};
+    };
+  };
 
 sendForm();
 
