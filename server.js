@@ -25,7 +25,7 @@ app.use(express.static('css'));
 app.use('/dist', express.static(__dirname + '/dist'));
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/images', express.static(__dirname + '/images'));
-app.use('/script', express.static(__dirname + '/script'));
+app.use('/fonts', express.static(__dirname + '/fonts'));
 
 app.use(cookieParser());
 
