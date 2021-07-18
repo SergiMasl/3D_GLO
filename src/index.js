@@ -1,18 +1,16 @@
-
-
-
-import countTimer from "./countTimer";
-import toggleMenu from "./toggleMenu";
-import tabs from "./tabs";
-import toggelPopUp from "./countTimer";
-import slider from "./slider";
-import imgTeams from "./imgTeams";
-import server from "./server";
-import countSum from "./countSum";
 import sendForm from "./sendForm";
-server();
+import countTimer from "./countTimer";
+import formAll from "./formAll";
+import toggleMenu from "./toggleMenu";
+import toggelPopUp from "./toggelPopUp";
+import tabs from "./tabs";
+import slider from "./slider";
+import imgTeamsFun from "./imgTeamsFun";
+import countSum from "./countSum";
 
-countTimer("20 july 2022");
+countTimer("20 july 2023");
+
+formAll();
 
 toggleMenu();
 
@@ -22,10 +20,8 @@ tabs();
 
 slider();
 
-imgTeams();
-
-sendForm();
+imgTeamsFun();
 
 countSum(100);
 
-
+sendForm();

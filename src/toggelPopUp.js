@@ -23,5 +23,4 @@ const toggelPopUp = () => {
     }
   });
 };
-
 export default toggelPopUp;

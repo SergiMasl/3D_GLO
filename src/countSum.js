@@ -1,7 +1,25 @@
 const countSum = () => {
-    let total = 0,
-      countValue = 1,
-      dayValue = 1;
+  console.log(11);
+  let total = 0,
+    countValue = 1,
+    dayValue = 1;
+
+  const calc = (price = 100) => {
+    console.log(122);
+    const calcBlock = document.querySelector(".calc-block"),
+      calcType = document.querySelector(".calc-type"),
+      calcSquare = document.querySelector(".calc-square"),
+      calcDay = document.querySelector(".calc-day"),
+      calcCount = document.querySelector(".calc-count"),
+      totalValue = document.querySelector("#total");
+
+    function chechNumbers(event) {
+      event.target.value = event.target.value.replace(/\D/g, "");
+    }
+
+    calcSquare.addEventListener("input", chechNumbers);
+    calcDay.addEventListener("input", chechNumbers);
+    calcCount.addEventListener("input", chechNumbers);
 
     const typeValue = calcType.options[calcType.selectedIndex].value,
       squareValu = +calcSquare.value;
@@ -34,20 +52,21 @@ const countSum = () => {
         }
       }, 10);
     }
+
+    calcBlock.addEventListener("change", (event) => {
+      const target = event.target;
+
+      if (
+        target === calcType ||
+        target === calcSquare ||
+        target === calcDay ||
+        target === calcCount
+      ) {
+        countSum();
+      }
+    });
   };
-
-  calcBlock.addEventListener("change", (event) => {
-    const target = event.target;
-
-    if (
-      target === calcType ||
-      target === calcSquare ||
-      target === calcDay ||
-      target === calcCount
-    ) {
-      countSum();
-    }
-  });
+  calc();
 };
 
 export default countSum;

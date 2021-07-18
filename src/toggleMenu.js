@@ -17,5 +17,4 @@ const toggleMenu = () => {
 
   btnMenu.addEventListener("click", handlerMenu);
 };
-
 export default toggleMenu;

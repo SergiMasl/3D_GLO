@@ -34,5 +34,4 @@ const countTimer = (dedline) => {
 
   let counter = setInterval(updateClock, 1000);
 };
-
 export default countTimer;

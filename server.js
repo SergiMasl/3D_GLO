@@ -22,7 +22,7 @@ app.use(express.static('script'));
 
 app.use(express.static('css'));
 
-app.use('/script', express.static(__dirname + '/script'));
+app.use('/dist', express.static(__dirname + '/dist'));
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/images', express.static(__dirname + '/images'));
 app.use('/script', express.static(__dirname + '/script'));
@@ -35,8 +35,8 @@ app.post('/server.php', (req, response) => {
 	}, 3000)
 });
 
-app.get('*', (req, res) => {
-  const htmlPath = `${__dirname}/index.html`;
+app.get('/', (req, res) => {
+  const htmlPath = `${__dirname}/dist/index.html`;
   res.sendFile(htmlPath);
 });
 
